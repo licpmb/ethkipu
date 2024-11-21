@@ -60,4 +60,50 @@ const tx = await provider.getTransaction(transactionHash);
 Obtener el estado de una transacción
 
 const txReceipt = await provider.getTransactionReceipt(txHash);
+Wallets
+Crear una billetera aleatoria
+
+const wallet = ethers.Wallet.createRandom();
+console.log("Address:", wallet.address);//para conocer la cuenta
+console.log("Private Key:", wallet.privateKey); //para conocer la clave privada
+Cargar una billetera desde una clave privada
+
+const wallet = new ethers.Wallet(privateKey);
+Conectar una billetera a un proveedor
+
+const connectedWallet = wallet.connect(provider);
+Firmar un mensaje
+
+const signedMessage = await wallet.signMessage(message);
+Enviar una transacción
+
+const txResponse = await wallet.sendTransaction(transaction);
+Utilidades
+Convertir Ether a Wei
+
+const weiAmount = ethers.parseEther("1.0");
+Convertir Wei a Ether
+
+const etherAmount = ethers.formatEther(weiAmount);
+Calcular el hash de un mensaje
+
+const messageHash = ethers.hashMessage(message);
+Obtener la dirección de un contrato a partir de su bytecode
+
+const contractAddress = ethers.getContractAddress(transaction);
+Contratos
+Conectar a un contrato
+
+const contract = new ethers.Contract(contractAddress, abi, provider);
+Llamar a una función de solo lectura
+
+const result = await contract.someReadOnlyFunction();
+Enviar una transacción a una función de escritura
+
+const txResponse = await contract.someWriteFunction(params, { gasLimit, gasPrice });
+Escuchar eventos de un contrato
+
+contract.on("EventName", (param1, param2, event) => {
+  console.log(param1, param2, event);
+});
 */
