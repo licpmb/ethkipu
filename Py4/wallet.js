@@ -13,7 +13,7 @@ const wallet = new ethers.Wallet(privateKey, provider);
 
 async function sendTransaction() {
   const tx = {
-    to: "0x672d3caC3AbA2240c7c73bB826FD8eC7cB3BA56e", // Dirección de destino que debes especificar
+    to: "TARGET_ADDRESS", // Dirección de destino que debes especificar
     value: ethers.parseEther("0.01"), // Cantidad a enviar en ETH
     gasLimit: 21000,
     // gasPrice: opcional, puedes dejar que el proveedor determine el precio adecuado
