@@ -1,23 +1,34 @@
 const { ethers } = require("ethers");
+require("dotenv").config();
 
-// Reemplaza con tu URL de Alchemy
-const alchemyUrl =
-  "https://eth-sepolia.g.alchemy.com/v2/sv9e5nOMVMZrnDLvmNJsUl-bLEaXHS6h";
+// URL del proveedor de Sepolia desde el archivo .env
+const sepoliaUrl = process.env.SEPOLIA_URL;
 
-// Crear un proveedor usando la URL de Alchemy
-const provider = new ethers.JsonRpcProvider(alchemyUrl);
+// Crear un proveedor usando la URL de Sepolia
+const provider = new ethers.JsonRpcProvider(sepoliaUrl);
 
-// Indicar la cuenta de la que se quiere conocer el saldo
-const address = "0xEf5521308CDC37399fFD06310016041639a9CF83";
+// Cargar la billetera desde una clave privada
+const privateKey = process.env.PRIVATE_KEY;
+const wallet = new ethers.Wallet(privateKey, provider);
 
-// Obtener el saldo de la cuenta
-async function getBalance() {
+async function sendTransaction() {
+  const tx = {
+    to: "0xA75f1f5C319Ab306017B0fda54A12413a4a5527e", // Dirección de destino que debes especificar
+    value: ethers.parseEther("0.01"), // Cantidad a enviar en ETH
+    gasLimit: 21000,
+    // gasPrice: opcional, puedes dejar que el proveedor determine el precio adecuado
+  };
+
   try {
-    const balance = await provider.getBalance(address);
-    console.log("Saldo de la cuenta:", ethers.formatEther(balance), "ETH");
+    const txResponse = await wallet.sendTransaction(tx);
+    console.log("Transacción enviada:", txResponse.hash);
+
+    // Esperar a que la transacción sea validada
+    const receipt = await txResponse.wait();
+    console.log("Transacción validada:", receipt);
   } catch (e) {
-    console.error("Error al obtener el saldo de la cuenta", e);
+    console.error("Error al enviar la transacción", e);
   }
 }
 
-getBalance();
+sendTransaction();
