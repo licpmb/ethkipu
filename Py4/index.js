@@ -2,7 +2,7 @@ const { ethers } = require("ethers");
 
 // Reemplaza con tu URL de Alchemy
 const alchemyUrl =
-  "<https://eth-mainnet.g.alchemy.com/v2/YOUR_ALCHEMY_PROJECT_ID>";
+  "https://eth-sepolia.g.alchemy.com/v2/sv9e5nOMVMZrnDLvmNJsUl-bLEaXHS6h";
 
 // Crear un proveedor usando la URL de Alchemy
 const provider = new ethers.JsonRpcProvider(alchemyUrl);
