@@ -13,7 +13,7 @@ const wallet = new ethers.Wallet(privateKey, provider);
 
 async function sendTransaction() {
   const tx = {
-    to: "0xA75f1f5C319Ab306017B0fda54A12413a4a5527e", // Dirección de destino que debes especificar
+    to: "0x672d3caC3AbA2240c7c73bB826FD8eC7cB3BA56e", // Dirección de destino que debes especificar
     value: ethers.parseEther("0.01"), // Cantidad a enviar en ETH
     gasLimit: 21000,
     // gasPrice: opcional, puedes dejar que el proveedor determine el precio adecuado
@@ -32,3 +32,32 @@ async function sendTransaction() {
 }
 
 sendTransaction();
+
+/* 
+Llamadas más usadas en ethers.js
+Proveedores (providers)
+Creación de un proveedor
+
+const provider = new ethers.JsonRpcProvider(url);
+Obtener el número de bloque actual
+
+const blockNumber = await provider.getBlockNumber();
+Obtener el saldo de una dirección
+
+const balance = await provider.getBalance(address);
+Obtener información de un bloque
+
+const block = await provider.getBlock(blockNumber);
+Obtener el historial de transacciones de una dirección
+
+const history = await provider.getHistory(address);
+Obtener el precio del gas
+
+const gasPrice = await provider.getGasPrice();
+Obtener una transacción
+
+const tx = await provider.getTransaction(transactionHash);
+Obtener el estado de una transacción
+
+const txReceipt = await provider.getTransactionReceipt(txHash);
+*/
