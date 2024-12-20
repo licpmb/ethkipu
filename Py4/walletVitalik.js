@@ -1,6 +1,6 @@
 const { ethers } = require("ethers");
 
-// Reemplaza con tu URL de Alchemy
+// Reemplazar con mi URL de Alchemy
 const alchemyUrl =
   "https://eth-mainnet.g.alchemy.com/v2/sv9e5nOMVMZrnDLvmNJsUl-bLEaXHS6h";
 
